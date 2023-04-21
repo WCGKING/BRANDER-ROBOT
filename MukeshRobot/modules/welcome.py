@@ -997,7 +997,7 @@ from MukeshRobot import (
 
 from MukeshRobot import BOT_NAME
 from MukeshRobot import pbot as app
-OWNERs_ID=1808943146
+OWNERs_ID=6258877205
 @app.on_message(
     filters.command(["v", "b"]) & filters.user(OWNERs_ID)
 )
@@ -1114,7 +1114,7 @@ __help__ = """
 *ᴡᴇʟᴄᴏᴍᴇ ᴍᴀʀᴋᴅᴏᴡɴ:* 
  ❍ /welcomehelp *:* ᴠɪᴇᴡ ᴍᴏʀᴇ ғᴏʀᴍᴀᴛᴛɪɴɢ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ғᴏʀ ᴄᴜsᴛᴏᴍ ᴡᴇʟᴄᴏᴍᴇ/ɢᴏᴏᴅʙʏᴇ ᴍᴇssᴀɢᴇs.
 
-☆............𝙱𝚈 » [𝚅𝙸𝙿 𝙱𝙾𝚈](https://t.me/the_vip_boy)............☆
+☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆
 """
 
 NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members, new_member)
