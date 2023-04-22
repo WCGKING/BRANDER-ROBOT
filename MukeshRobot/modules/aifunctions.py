@@ -28,7 +28,7 @@ async def hmm(event):
     lodu = response.json()
     result = lodu["message"]["text"]
     if "no no" in result:
-        pro = "I am fairly found and I was made by @itz_legend_coder."
+        pro = "I am fairly found and I was made by @BRANDRD_21."
         try:
             async with telethn.action(event.chat_id, "typing"):
                 await asyncio.sleep(2)
