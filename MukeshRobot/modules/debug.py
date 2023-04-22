@@ -71,6 +71,6 @@ __help__ = """
 /logs    ᴛᴏ ɢᴇᴛ ʜᴇʀᴜᴋᴏ ʟᴏɢs
 /debug ᴛᴏ ᴏɴ / ᴏғғ ᴅᴇʙᴜɢ 
 
-☆............𝙱𝚈 » [𝚅𝙸𝙿 𝙱𝙾𝚈](https://t.me/the_vip_boy)............☆"""
+☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆"""
 __command_list__ = ["debug"]
 __handlers__ = [DEBUG_HANDLER]
