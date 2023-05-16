@@ -19,7 +19,7 @@ class Config(object):
     TOKEN = ""  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
     OWNER_ID = "6258877205" # If you dont know, run the bot and do /id in your private chat with it, also an integer
     OWNER_USERNAME = "BRANDRD_21"
-    SUPPORT_CHAT = "TG_FRIENDSS"  # Your own group for support, do not add the @
+    SUPPORT_CHAT = "BRANDRD_21"  # Your own group for support, do not add the @
     JOIN_LOGGER = (
         -1001626004802
     )  # Prints any new group the bot is added to, prints just the name and ID.
@@ -39,15 +39,15 @@ class Config(object):
 
     # OPTIONAL
     ##List of id's -  (not usernames) for users which have sudo access to the bot.
-    DRAGONS = get_user_list("elevated_users.json", "5235126711")
+    DRAGONS = get_user_list("elevated_users.json", "6258877205)
     ##List of id's - (not usernames) for developers who will have the same perms as the owner
-    DEV_USERS = get_user_list("elevated_users.json", "5235126711")
+    DEV_USERS = get_user_list("elevated_users.json", "6258877205)
     ##List of id's (not usernames) for users which are allowed to gban, but can also be banned.
-    DEMONS = get_user_list("elevated_users.json", "5235126711")
+    DEMONS = get_user_list("elevated_users.json", "6258877205)
     # List of id's (not usernames) for users which WONT be banned/kicked by the bot.
-    TIGERS = get_user_list("elevated_users.json", "5235126711")
+    TIGERS = get_user_list("elevated_users.json", "6258877205)
     WOLVES = get_user_list("elevated_users.json", "whitelists")
-    DONATION_LINK = "https://t.me/the_vip_boy" # EG, paypal
+    DONATION_LINK = "https://t.me/BRANDRD_21" # EG, paypal
     CERT_PATH = None
     PORT = 5000
     DEL_CMDS = True  # Delete commands that users dont have access to, like delete /ban if a non admin uses it.
