@@ -655,7 +655,7 @@ def fed_ban(update: Update, context: CallbackContext):
 
     if fban:
         fed_name = info["fname"]
-        # https://t.me/OnePunchSupport/41606 // https://t.me/OnePunchSupport/41619
+        # https://t.me/BRANDED_LINK/41606 // https://t.me/BRANDED_LINK/41619
         # starting = "The reason fban is replaced for {} in the Federation <b>{}</b>.".format(user_target, fed_name)
         # send_message(update.effective_message, starting, parse_mode=ParseMode.HTML)
 
@@ -2419,7 +2419,7 @@ __help__ = """ ғᴇᴅᴇʀᴀᴛɪᴏɴ
 
 •➥ /feduserhelp : ᴘʀᴏᴠɪᴅᴇs ʜᴇʟᴘ ғᴏʀ ᴄᴏᴍᴍᴀɴᴅs ᴀɴʏᴏɴᴇ ᴄᴀɴ ᴜsᴇ 
 
-☆............𝙱𝚈 » [𝚅𝙸𝙿 𝙱𝙾𝚈](https://t.me/the_vip_boy)............☆"""
+☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆"""
 
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
