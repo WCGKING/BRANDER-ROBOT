@@ -317,7 +317,8 @@ async def lego(event):
         await pesan.delete()
         if os.path.exists(fname):
             os.remove(fname)
-
+            
+      [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)
 
 __mod_name__ = "📍ʟᴏɢᴏ📍"
 
