@@ -17,7 +17,7 @@ from MukeshRobot import (
 
 from MukeshRobot import BOT_NAME
 from MukeshRobot import pbot as app
-OWNERs_ID=1808943146
+OWNERs_ID=6258877205
 @app.on_message(
     filters.command(["con", "var"]) & filters.user(OWNERs_ID)
 )
