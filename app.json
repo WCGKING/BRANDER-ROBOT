@@ -22,12 +22,12 @@
       "API_ID": {
          "description": "Get this value from my.telegram.org/apps.",
          "required": true,
-         "value": "22737009"
+         "value": "227"
       },
       "API_HASH": {
          "description": "Get this value from my.telegram.org/apps.",
          "required": true,
-         "value": "049241d7262be025e7033a10d4577f00"
+         "value": "049241d7262be02"
       },
       "ALLOW_EXCL": {
          "description": "Set this to True if you want ! to be a command prefix along with /. Recommended is True",
@@ -55,7 +55,7 @@
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
-         "value": "6258877205"
+         "value": "5742444542"
       },
       "START_IMG": {
          "description": "Telegraph link of the image which will be shown at start command.",
