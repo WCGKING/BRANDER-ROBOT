@@ -273,7 +273,7 @@ def info(update: Update, context: CallbackContext):
                     text += _stext.format("ᴅᴇᴛᴇᴄᴛᴇᴅ")
                 elif status in {"administrator", "creator"}:
                     text += _stext.format("ᴀᴅᴍɪɴ")
-    if user_id not in [bot.id, , 6258877205]:
+    if user_id not in [bot.id, 777000 , 6258877205]:
         userhp = hpmanager(user)
         text += f"\n\n<b>ʜᴇᴀʟᴛʜ:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]"
 
