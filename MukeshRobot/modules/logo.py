@@ -318,7 +318,7 @@ async def lego(event):
         if os.path.exists(fname):
             os.remove(fname)
             
-      [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)
+      [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_BOT)
 
 __mod_name__ = "📍ʟᴏɢᴏ📍"
 
