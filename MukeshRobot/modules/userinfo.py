@@ -428,7 +428,7 @@ def set_about_me(update: Update, context: CallbackContext):
     if message.reply_to_message:
         repl_message = message.reply_to_message
         repl_user_id = repl_message.from_user.id
-        if repl_user_id in [bot.id,777000 , 6258877205 and (user_id in DEV_USERS):
+        if repl_user_id in [bot.id,777000, 6258877205] and (user_id in DEV_USERS):
             user_id = repl_user_id
     text = message.text
     info = text.split(None, 1)
