@@ -493,7 +493,7 @@ def __stats__():
 def __user_info__(user_id):
     is_gbanned = sql.is_user_gbanned(user_id)
     text = "Malicious: <b>{}</b>"
-    if user_id in [, 6258877205]:
+    if user_id in [6258877205]:
         return ""
     if user_id == dispatcher.bot.id:
         return ""
