@@ -18,8 +18,8 @@ class Config(object):
     API_HASH = " "
     TOKEN = ""  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
     OWNER_ID = "6258877205" # If you dont know, run the bot and do /id in your private chat with it, also an integer
-    OWNER_USERNAME = "BRANDRDRO_BOT"
-    SUPPORT_CHAT = "BRANDRDRO_BOT"  # Your own group for support, do not add the @
+    OWNER_USERNAME = "BRANDRDR_BOT"
+    SUPPORT_CHAT = "BRANDRDR_BOT"  # Your own group for support, do not add the @
     JOIN_LOGGER = (
         -1001626004802
     )  # Prints any new group the bot is added to, prints just the name and ID.
@@ -47,7 +47,7 @@ class Config(object):
     # List of id's (not usernames) for users which WONT be banned/kicked by the bot.
     TIGERS = get_user_list("elevated_users.json", "6258877205)
     WOLVES = get_user_list("elevated_users.json", "whitelists")
-    DONATION_LINK = "https://t.me/BRANDRD_21" # EG, paypal
+    DONATION_LINK = "https://t.me/BRANDRD_BOT" # EG, paypal
     CERT_PATH = None
     PORT = 5000
     DEL_CMDS = True  # Delete commands that users dont have access to, like delete /ban if a non admin uses it.
