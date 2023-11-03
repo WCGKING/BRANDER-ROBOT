@@ -113,7 +113,6 @@ buttons = [
         InlineKeyboardButton(text="⛦ ᴄʜᴀɴɴᴇʟ ⛦", url=f"https://t.me/BRANDRD_BOT"),
     ],
     [   
-        InlineKeyboardButton(text="⛦ ʜᴇʀᴜᴋᴏ ᴄᴄ ⛦", url=f"https://t.me/BRANDED_PAID_CC")
         InlineKeyboardButton(text="⛦ ʙʀᴀɴᴅᴇᴅ ʀᴇᴘᴏ ⛦", url=f"https://github.com/WCGKING"),
     ],
 ]
