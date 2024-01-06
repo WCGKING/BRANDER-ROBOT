@@ -49,24 +49,24 @@ async def paste_func(_, message):
             content = await f.read()
         os.remove(doc)
     link = await paste(content)
-    preview = link + "/preview.png"
+    preview = link 
     button = InlineKeyboard(row_width=1)
-    button.add(InlineKeyboardButton(text="Paste Link", url=link))
+    button.add(InlineKeyboardButton(text="• ᴘᴀsᴛᴇ ʟɪɴᴋ •", url=link))
 
-    if await isPreviewUp(preview):
-        try:
-            await message.reply_photo(photo=preview, quote=False, reply_markup=button)
-            return await m.delete()
-        except Exception:
-            pass
-    return await m.edit(link)
+    
+    try:
+        await message.reply("ʜᴇʀᴇ ɪs ʏᴏᴜʀ ᴘᴀsᴛᴇ ʟɪɴᴋ :", quote=False, reply_markup=button)
+            #return await m.delete()
+    except Exception:
+        pass
+    
 
 
-__mod_name__ = "⚡Pᴀs​ᴛᴇ⚡"
+__mod_name__ = "⚡kingPᴀs​ᴛᴇ⚡"
 __help__ = """
  ᴘᴀsᴛᴇs ᴛʜᴇ ɢɪᴠᴇɴ ғɪʟᴇ ᴀɴᴅ sʜᴏᴡs ʏᴏᴜ ᴛʜᴇ ʀᴇsᴜʟᴛ
 
  ❍ /paste  *:* ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ғɪʟᴇ
 
-☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆
+☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_BOT)............☆
  """
