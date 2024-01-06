@@ -4,7 +4,7 @@ import os
 from typing import Optional
 
 from telegram import ParseMode, TelegramError, Update
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import mention_html
 
 from MukeshRobot import (
@@ -41,7 +41,6 @@ def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
     return reply
 
 
-@run_async
 @dev_plus
 @gloggable
 def addsudo(update: Update, context: CallbackContext) -> str:
@@ -100,7 +99,6 @@ def addsudo(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @sudo_plus
 @gloggable
 def addsupport(
@@ -159,7 +157,6 @@ def addsupport(
     return log_message
 
 
-@run_async
 @sudo_plus
 @gloggable
 def addwhitelist(update: Update, context: CallbackContext) -> str:
@@ -215,7 +212,6 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @sudo_plus
 @gloggable
 def addtiger(update: Update, context: CallbackContext) -> str:
@@ -276,7 +272,6 @@ def addtiger(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @dev_plus
 @gloggable
 def removesudo(update: Update, context: CallbackContext) -> str:
@@ -319,7 +314,6 @@ def removesudo(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @sudo_plus
 @gloggable
 def removesupport(update: Update, context: CallbackContext) -> str:
@@ -362,7 +356,6 @@ def removesupport(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @sudo_plus
 @gloggable
 def removewhitelist(update: Update, context: CallbackContext) -> str:
@@ -404,7 +397,6 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @sudo_plus
 @gloggable
 def removetiger(update: Update, context: CallbackContext) -> str:
@@ -446,12 +438,11 @@ def removetiger(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @whitelist_plus
 def whitelistlist(update: Update, context: CallbackContext):
     reply = "<b>Known Wolf Disasters 🐺:</b>\n"
     m = update.effective_message.reply_text(
-        "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
+        "<code>..</code>", parse_mode=ParseMode.HTML
     )
     bot = context.bot
     for each_user in WOLVES:
@@ -465,10 +456,9 @@ def whitelistlist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def tigerlist(update: Update, context: CallbackContext):
-    reply = "<b>Known Tiger Disasters 🐯:</b>\n"
+    reply = "<b>ᴋɴᴏᴡɴ ᴛɪɢᴇʀ ᴅɪsᴀsᴛᴇʀs 🐯:</b>\n"
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
     )
@@ -483,14 +473,13 @@ def tigerlist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def supportlist(update: Update, context: CallbackContext):
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
     )
-    reply = "<b>Known Demon Disasters 👹:</b>\n"
+    reply = "<b> ᴋɴᴏᴡɴ ᴅᴇᴍᴏɴ ᴅɪsᴀsᴛᴇʀs👹:</b>\n"
     for each_user in DEMONS:
         user_id = int(each_user)
         try:
@@ -501,15 +490,14 @@ def supportlist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def sudolist(update: Update, context: CallbackContext):
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
     )
-    true_sudo = list(set(DRAGONS) - set(DEV_USERS))
-    reply = "<b>Known Dragon Disasters 🐉:</b>\n"
+    true_sudo = list(set(DRAGONS)- set(DEV_USERS))
+    reply = "<b> ᴋɴᴏᴡɴ ᴅʀᴀɢᴏɴ ᴅɪsᴀsᴛᴇʀs🐉:</b>\n"
     for each_user in true_sudo:
         user_id = int(each_user)
         try:
@@ -520,15 +508,14 @@ def sudolist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def devlist(update: Update, context: CallbackContext):
     bot = context.bot
     m = update.effective_message.reply_text(
-        "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
+        "<code>ɢᴀᴛʜᴇʀɪɴɢ..</code>", parse_mode=ParseMode.HTML
     )
-    true_dev = list(set(DEV_USERS) - {OWNER_ID})
-    reply = "✨ <b>Dev users list :</b>\n"
+    true_dev = list(set(DEV_USERS) -{OWNER_ID})
+    reply = "✨ <b>ᴅᴇᴠs ᴜsᴇʀ ʟɪsᴛ :</b>\n"
     for each_user in true_dev:
         user_id = int(each_user)
         try:
@@ -565,88 +552,33 @@ __help__ = f"""
  ❍ broadcastusers *:* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ᴜsᴇʀs
  ❍ /broadcastgroups *:* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ɢʀᴏᴜᴘs
 
-*ɢʀᴏᴜᴘs ɪɴғᴏ:*
- ❍ /groups *:* ʟɪsᴛ ᴛʜᴇ ɢʀᴏᴜᴘs ᴡɪᴛʜ ɴᴀᴍᴇ, ɪᴅ, ᴍᴇᴍʙᴇʀs ᴄᴏᴜɴᴛ ᴀs ᴀ ᴛxᴛ
- ❍ /leave  <ɪᴅ>*:* ʟᴇᴀᴠᴇ ᴛʜᴇ ɢʀᴏᴜᴘ, ɪᴅ ᴍᴜsᴛ ʜᴀᴠᴇ ʜʏᴘʜᴇɴ
- ❍ /stats *:* sʜᴏᴡs ᴏᴠᴇʀᴀʟʟ ʙᴏᴛ sᴛᴀᴛs
- ❍ /getchats *:* ɢᴇᴛs ᴀ ʟɪsᴛ ᴏғ ɢʀᴏᴜᴘ ɴᴀᴍᴇs ᴛʜᴇ ᴜsᴇʀ ʜᴀs ʙᴇᴇɴ sᴇᴇɴ ɪɴ. ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ
- ❍ /ginfo ᴜsᴇʀɴᴀᴍᴇ/ʟɪɴᴋ/ɪᴅ*:* ᴘᴜʟʟs ɪɴғᴏ ᴘᴀɴᴇʟ ғᴏʀ ᴇɴᴛɪʀᴇ ɢʀᴏᴜᴘ
 
-*ᴀᴄᴄᴇss ᴄᴏɴᴛʀᴏʟ:* 
- ❍ /ignore *:* ʙʟᴀᴄᴋʟɪsᴛs ᴀ ᴜsᴇʀ ғʀᴏᴍ ᴜsɪɴɢ ᴛʜᴇ ʙᴏᴛ ᴇɴᴛɪʀᴇʟʏ
- ❍ /lockdown  <ᴏғғ/ᴏɴ>*:* ᴛᴏɢɢʟᴇs ʙᴏᴛ ᴀᴅᴅɪɴɢ ᴛᴏ ɢʀᴏᴜᴘs
- ❍ /notice *:* ʀᴇᴍᴏᴠᴇs ᴜsᴇʀ ғʀᴏᴍ ʙʟᴀᴄᴋʟɪsᴛ
- ❍ /ignoredlist*:* ʟɪsᴛs ɪɢɴᴏʀᴇᴅ ᴜsᴇʀs
-
-*sᴘᴇᴇᴅᴛᴇsᴛ:*
- ❍ /speedtest *:* ʀᴜɴs ᴀ sᴘᴇᴇᴅᴛᴇsᴛ ᴀɴᴅ ɢɪᴠᴇs ʏᴏᴜ 2 ᴏᴘᴛɪᴏɴs ᴛᴏ ᴄʜᴏᴏsᴇ ғʀᴏᴍ, ᴛᴇxᴛ ᴏʀ ɪᴍᴀɢᴇ ᴏᴜᴛᴘᴜᴛ
-
-*ᴍᴏᴅᴜʟᴇ ʟᴏᴀᴅɪɴɢ:*
- ❍ /listmodules *:* ʟɪsᴛs ɴᴀᴍᴇs ᴏғ ᴀʟʟ ᴍᴏᴅᴜʟᴇs
- ❍ /load  ᴍᴏᴅᴜʟᴇɴᴀᴍᴇ*:* ʟᴏᴀᴅs ᴛʜᴇ sᴀɪᴅ ᴍᴏᴅᴜʟᴇ ᴛᴏ ᴍᴇᴍᴏʀʏ ᴡɪᴛʜᴏᴜᴛ ʀᴇsᴛᴀʀᴛɪɴɢ.
- ❍ /unload  ᴍᴏᴅᴜʟᴇɴᴀᴍᴇ*:* ʟᴏᴀᴅs ᴛʜᴇ sᴀɪᴅ ᴍᴏᴅᴜʟᴇ ғʀᴏᴍ ᴍᴇᴍᴏʀʏ ᴡɪᴛʜᴏᴜᴛ ʀᴇsᴛᴀʀᴛɪɴɢ ᴍᴇᴍᴏʀʏ ᴡɪᴛʜᴏᴜᴛ ʀᴇsᴛᴀʀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ 
-
-*ʀᴇᴍᴏᴛᴇ ᴄᴏᴍᴍᴀɴᴅs:*
- ❍ /rban *:* ᴜsᴇʀ ɢʀᴏᴜᴘ*:* ʀᴇᴍᴏᴛᴇ ʙᴀɴ
- ❍ /runban *:* ᴜsᴇʀ ɢʀᴏᴜᴘ*:* ʀᴇᴍᴏᴛᴇ ᴜɴ-ʙᴀɴ
- ❍ /rpunch *:* ᴜsᴇʀ ɢʀᴏᴜᴘ*:* ʀᴇᴍᴏᴛᴇ ᴘᴜɴᴄʜ
- ❍ /rmute *:* ᴜsᴇʀ ɢʀᴏᴜᴘ*:* ʀᴇᴍᴏᴛᴇ ᴍᴜᴛᴇ
- ❍ /runmute *:* ᴜsᴇʀ ɢʀᴏᴜᴘ*:* ʀᴇᴍᴏᴛᴇ ᴜɴ-ᴍᴜᴛᴇ
-
-*ᴡɪɴᴅᴏᴡs sᴇʟғ ʜᴏsᴛᴇᴅ ᴏɴʟʏ:*
- ❍ /reboot *:* ʀᴇsᴛᴀʀᴛs ᴛʜᴇ ʙᴏᴛs sᴇʀᴠɪᴄᴇ
- ❍ /gitpull *:* ᴘᴜʟʟs ᴛʜᴇ ʀᴇᴘᴏ ᴀɴᴅ ᴛʜᴇɴ ʀᴇsᴛᴀʀᴛs ᴛʜᴇ ʙᴏᴛs sᴇʀᴠɪᴄᴇ
-
-*ᴄʜᴀᴛʙᴏᴛ:* 
- ❍ /listaichats *:* ʟɪsᴛs ᴛʜᴇ ᴄʜᴀᴛs ᴛʜᴇ ᴄʜᴀᴛᴍᴏᴅᴇ ɪs ᴇɴᴀʙʟᴇᴅ ɪɴ
- 
-*ᴅᴇʙᴜɢɢɪɴɢ ᴀɴᴅ sʜᴇʟʟ:* 
- ❍ /debug <ᴏɴ/ᴏғғ>*:* ʟᴏɢs ᴄᴏᴍᴍᴀɴᴅs ᴛᴏ ᴜᴘᴅᴀᴛᴇs.ᴛxᴛ
- ❍ /logs *:* ʀᴜɴ ᴛʜɪs ɪɴ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ ᴛᴏ ɢᴇᴛ ʟᴏɢs ɪɴ ᴘᴍ
- ❍ /eval *:* sᴇʟғ ᴇxᴘʟᴀɴᴀᴛᴏʀʏ
- ❍ /sh *:* ʀᴜɴs sʜᴇʟʟ ᴄᴏᴍᴍᴀɴᴅ
- ❍ /shell *:* ʀᴜɴs sʜᴇʟʟ ᴄᴏᴍᴍᴀɴᴅ
- ❍ /clearlocals *:* ᴀs ᴛʜᴇ ɴᴀᴍᴇ ɢᴏᴇs
- ❍ /dbcleanup *:* ʀᴇᴍᴏᴠᴇs ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄs ᴀɴᴅ ɢʀᴏᴜᴘs ғʀᴏᴍ ᴅʙ
- ❍ /py *:* ʀᴜɴs ᴘʏᴛʜᴏɴ ᴄᴏᴅᴇ
- 
-*ɢʟᴏʙᴀʟ ʙᴀɴs:*
- ❍ /gban <ɪᴅ> <ʀᴇᴀsᴏɴ>*:* ɢʙᴀɴs ᴛʜᴇ ᴜsᴇʀ, ᴡᴏʀᴋs ʙʏ ʀᴇᴘʟʏ ᴛᴏᴏ
- ❍ /ungban *:* ᴜɴɢʙᴀɴs ᴛʜᴇ ᴜsᴇʀ, sᴀᴍᴇ ᴜsᴀɢᴇ ᴀs ɢʙᴀɴ
- ❍ /gbanlist *:* ᴏᴜᴛᴘᴜᴛs ᴀ ʟɪsᴛ ᴏғ ɢʙᴀɴɴᴇᴅ ᴜsᴇʀs
-
-*ɢʟᴏʙᴀʟ ʙʟᴜᴇ ᴛᴇxᴛ*
- ❍ /gignoreblue *:* <ᴡᴏʀᴅ>*:* ɢʟᴏʙᴀʟʟʏ ɪɢɴᴏʀᴇ ʙʟᴜᴇᴛᴇxᴛ ᴄʟᴇᴀɴɪɴɢ ᴏғ sᴀᴠᴇᴅ ᴡᴏʀᴅ ᴀᴄʀᴏss ᴀɴᴏɴʏᴍᴏᴜs ʀᴏʙᴏᴛ.
- ❍ /ungignoreblue *:* <ᴡᴏʀᴅ>*:* ʀᴇᴍᴏᴠᴇ sᴀɪᴅ ᴄᴏᴍᴍᴀɴᴅ ғʀᴏᴍ ɢʟᴏʙᴀʟ ᴄʟᴇᴀɴɪɴɢ ʟɪsᴛ
-
-*ʜᴇʀᴏᴋᴜ sᴇᴛᴛɪɴɢs*
-*ᴏᴡɴᴇʀ ᴏɴʟʏ*
- ❍ /usage *:* ᴄʜᴇᴄᴋ ʏᴏᴜʀ ʜᴇʀᴏᴋᴜ ᴅʏɴᴏ ʜᴏᴜʀs ʀᴇᴍᴀɪɴɪɴɢ.
- ❍ /see ᴠᴀʀ <ᴠᴀʀ>*:* ɢᴇᴛ ʏᴏᴜʀ ᴇxɪsᴛɪɴɢ ᴠᴀʀɪʙʟᴇs, ᴜsᴇ ɪᴛ ᴏɴʟʏ ᴏɴ ʏᴏᴜʀ ᴘʀɪᴠᴀᴛᴇ ɢʀᴏᴜᴘ!
- ❍ /set ᴠᴀʀ <ɴᴇᴡᴠᴀʀ> <ᴠᴀᴠᴀʀɪᴀʙʟᴇ>*:* ᴀᴅᴅ ɴᴇᴡ ᴠᴀʀɪᴀʙʟᴇ ᴏʀ ᴜᴘᴅᴀᴛᴇ ᴇxɪsᴛɪɴɢ ᴠᴀʟᴜᴇ ᴠᴀʀɪᴀʙʟᴇ.
- ❍ /del  ᴠᴀʀ <ᴠᴀʀ>*:* ᴅᴇʟᴇᴛᴇ ᴇxɪsᴛɪɴɢ ᴠᴀʀɪᴀʙʟᴇ.
- ❍ /logs ɢᴇᴛ ʜᴇʀᴏᴋᴜ ᴅʏɴᴏ ʟᴏɢs.
 
 `⚠️ ʀᴇᴀᴅ ғʀᴏᴍ ᴛᴏᴘ`
-ᴠɪsɪᴛ @{SUPPORT_CHAT} ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.
-
-☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆☆
+ᴠɪsɪᴛ [sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ]("https://t.me{SUPPORT_CHAT}") ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.
 """
 
-SUDO_HANDLER = CommandHandler("addsudo", addsudo)
-SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport)
-TIGER_HANDLER = CommandHandler(("addtiger"), addtiger)
-WHITELIST_HANDLER = CommandHandler(("addwhitelist", "addwolf"), addwhitelist)
-UNSUDO_HANDLER = CommandHandler(("removesudo", "rmsudo"), removesudo)
-UNSUPPORT_HANDLER = CommandHandler(("removesupport", "removedemon"), removesupport)
-UNTIGER_HANDLER = CommandHandler(("removetiger"), removetiger)
-UNWHITELIST_HANDLER = CommandHandler(("removewhitelist", "removewolf"), removewhitelist)
-
-WHITELISTLIST_HANDLER = CommandHandler(["whitelistlist", "wolves"], whitelistlist)
-TIGERLIST_HANDLER = CommandHandler(["tigers"], tigerlist)
-SUPPORTLIST_HANDLER = CommandHandler("supportlist", supportlist)
-SUDOLIST_HANDLER = CommandHandler("sudolist", sudolist)
-DEVLIST_HANDLER = CommandHandler("devlist", devlist)
+SUDO_HANDLER = CommandHandler("addsudo", addsudo, run_async=True)
+SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport, run_async=True)
+TIGER_HANDLER = CommandHandler(("addtiger"), addtiger, run_async=True)
+WHITELIST_HANDLER = CommandHandler(
+    ("addwhitelist", "addwolf"), addwhitelist, run_async=True
+)
+UNSUDO_HANDLER = CommandHandler(("removesudo", "rmsudo"), removesudo, run_async=True)
+UNSUPPORT_HANDLER = CommandHandler(
+    ("removesupport", "removedemon"), removesupport, run_async=True
+)
+UNTIGER_HANDLER = CommandHandler(("removetiger"), removetiger, run_async=True)
+UNWHITELIST_HANDLER = CommandHandler(
+    ("removewhitelist", "removewolf"), removewhitelist, run_async=True
+)
+WHITELISTLIST_HANDLER = CommandHandler(
+    ["whitelistlist", "wolves"], whitelistlist, run_async=True
+)
+TIGERLIST_HANDLER = CommandHandler(["tigers"], tigerlist, run_async=True)
+SUPPORTLIST_HANDLER = CommandHandler("supportlist", supportlist, run_async=True)
+SUDOLIST_HANDLER = CommandHandler("sudolist", sudolist, run_async=True)
+DEVLIST_HANDLER = CommandHandler("devlist", devlist, run_async=True)
 
 dispatcher.add_handler(SUDO_HANDLER)
 dispatcher.add_handler(SUPPORT_HANDLER)
@@ -656,14 +588,13 @@ dispatcher.add_handler(UNSUDO_HANDLER)
 dispatcher.add_handler(UNSUPPORT_HANDLER)
 dispatcher.add_handler(UNTIGER_HANDLER)
 dispatcher.add_handler(UNWHITELIST_HANDLER)
-
 dispatcher.add_handler(WHITELISTLIST_HANDLER)
 dispatcher.add_handler(TIGERLIST_HANDLER)
 dispatcher.add_handler(SUPPORTLIST_HANDLER)
 dispatcher.add_handler(SUDOLIST_HANDLER)
 dispatcher.add_handler(DEVLIST_HANDLER)
 
-__mod_name__ = " ♨️ᴅᴇᴠꜱ♨️"
+__mod_name__ = "Dᴇᴠꜱ"
 __handlers__ = [
     SUDO_HANDLER,
     SUPPORT_HANDLER,
