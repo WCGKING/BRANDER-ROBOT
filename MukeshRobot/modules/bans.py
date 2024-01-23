@@ -2,7 +2,7 @@ import html
 
 from telegram import ParseMode, Update
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
+from telegram.ext import CallbackContext, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
 from MukeshRobot import (
@@ -32,7 +32,6 @@ from MukeshRobot.modules.helper_funcs.string_handling import extract_time
 from MukeshRobot.modules.log_channel import gloggable, loggable
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -100,7 +99,7 @@ def ban(update: Update, context: CallbackContext) -> str:
         log += "\n<b>ʀᴇᴀsᴏɴ:</b> {}".format(reason)
 
     try:
-        chat.kick_member(user_id)
+        chat.ban_member(user_id)
 
         if silent:
             if message.reply_to_message:
@@ -116,7 +115,7 @@ def ban(update: Update, context: CallbackContext) -> str:
         )
         if reason:
             reply += f"\n<code> </code><b>•  ʀᴇᴀsᴏɴ:</b> \n{html.escape(reason)}"
-        bot.sendMessage(chat.id, reply, parse_mode=ParseMode.HTML, quote=False)
+        bot.sendMessage(chat.id, reply, parse_mode=ParseMode.HTML)
         return log
 
     except BadRequest as excp:
@@ -140,7 +139,6 @@ def ban(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -198,7 +196,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         log += "\n<b>ʀᴇᴀsᴏɴ:</b> {}".format(reason)
 
     try:
-        chat.kick_member(user_id, until_date=bantime)
+        chat.ban_member(user_id, until_date=bantime)
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         bot.sendMessage(
             chat.id,
@@ -229,7 +227,6 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -289,7 +286,6 @@ def kick(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @bot_admin
 @can_restrict
 def kickme(update: Update, context: CallbackContext):
@@ -305,7 +301,6 @@ def kickme(update: Update, context: CallbackContext):
         update.effective_message.reply_text("ʜᴜʜ? ɪ ᴄᴀɴ'ᴛ :/")
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -354,7 +349,6 @@ def unban(update: Update, context: CallbackContext) -> str:
     return log
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -372,7 +366,7 @@ def selfunban(context: CallbackContext, update: Update) -> str:
         message.reply_text("ɢɪᴠᴇ ᴀ ᴠᴀʟɪᴅ ᴄʜᴀᴛ ɪᴅ.")
         return
 
-    chat = bot.getChat(chat_id)
+    chat = bot.get_chat(chat_id)
 
     try:
         member = chat.get_member(user.id)
@@ -409,16 +403,16 @@ __help__ = """
  ❍ /tban  <ᴜsᴇʀʜᴀɴᴅʟᴇ> x(ᴍ/ʜ/ᴅ)*:* ʙᴀɴs ᴀ ᴜsᴇʀ ғᴏʀ `x` ᴛɪᴍᴇ. (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ). `ᴍ` = `ᴍɪɴᴜᴛᴇs`, `ʜ` = `ʜᴏᴜʀs`, `ᴅ` = `ᴅᴀʏs`.
  ❍ /unban  <ᴜsᴇʀʜᴀɴᴅʟᴇ>*:* ᴜɴʙᴀɴs ᴀ ᴜsᴇʀ. (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ)
  ❍ /kick <ᴜsᴇʀʜᴀɴᴅʟᴇ>*:* ᴋɪᴄᴋs ᴀ ᴜsᴇʀ ᴏᴜᴛ ᴏғ ᴛʜᴇ ɢʀᴏᴜᴘ, (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ)
-
-☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆
 """
 
-BAN_HANDLER = CommandHandler(["ban", "sban"], ban)
-TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban)
-KICK_HANDLER = CommandHandler("kick", kick)
-UNBAN_HANDLER = CommandHandler("unban", unban)
-ROAR_HANDLER = CommandHandler("roar", selfunban)
-KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group)
+BAN_HANDLER = CommandHandler(["ban", "sban"], ban, run_async=True)
+TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban, run_async=True)
+KICK_HANDLER = CommandHandler("kick", kick, run_async=True)
+UNBAN_HANDLER = CommandHandler("unban", unban, run_async=True)
+ROAR_HANDLER = CommandHandler("roar", selfunban, run_async=True)
+KICKME_HANDLER = DisableAbleCommandHandler(
+    "kickme", kickme, filters=Filters.chat_type.groups, run_async=True
+)
 
 dispatcher.add_handler(BAN_HANDLER)
 dispatcher.add_handler(TEMPBAN_HANDLER)
@@ -427,7 +421,7 @@ dispatcher.add_handler(UNBAN_HANDLER)
 dispatcher.add_handler(ROAR_HANDLER)
 dispatcher.add_handler(KICKME_HANDLER)
 
-__mod_name__ = "♨️ʙᴀɴ♨️"
+__mod_name__ = "Bᴀɴ"
 __handlers__ = [
     BAN_HANDLER,
     TEMPBAN_HANDLER,
