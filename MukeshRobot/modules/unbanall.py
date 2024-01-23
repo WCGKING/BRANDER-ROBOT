@@ -182,7 +182,7 @@ async def get_users(show):
     os.remove("userslist.txt")
 
 
-__mod_name__ = "⚡ᴀᴅᴠᴀɴᴄᴇ⚡"
+__mod_name__ = "ᴀᴅᴠᴀɴᴄᴇ"
 __help__ = """ 
 
 ➥ /unbanall : ᴜɴʙᴀɴ ᴀʟʟ ᴍᴀᴍʙᴇʀ 
@@ -191,5 +191,5 @@ __help__ = """
 
 ➥ /users : ɢᴇᴛ ɢʀᴏᴜᴘ ᴜsᴇʀs ʟɪsᴛ
 
-☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚(https://t.me/BRANDRD_21)............☆
+☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚(https://t.me/BRANDEDKING82)............☆
 """
