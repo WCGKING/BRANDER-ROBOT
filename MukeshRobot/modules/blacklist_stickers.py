@@ -4,7 +4,6 @@ from typing import Optional
 from telegram import Chat, ChatPermissions, Message, ParseMode, Update, User
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
-from telegram.ext.dispatcher import run_async
 from telegram.utils.helpers import mention_html, mention_markdown
 
 import MukeshRobot.modules.sql.blsticker_sql as sql
@@ -19,7 +18,6 @@ from MukeshRobot.modules.log_channel import loggable
 from MukeshRobot.modules.warns import warn
 
 
-@run_async
 def blackliststicker(update: Update, context: CallbackContext):
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
@@ -64,7 +62,6 @@ def blackliststicker(update: Update, context: CallbackContext):
     send_message(update.effective_message, text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @user_admin
 def add_blackliststicker(update: Update, context: CallbackContext):
     bot = context.bot
@@ -156,7 +153,6 @@ def add_blackliststicker(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 @user_admin
 def unblackliststicker(update: Update, context: CallbackContext):
     bot = context.bot
@@ -253,7 +249,6 @@ def unblackliststicker(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 @loggable
 @user_admin
 def blacklist_mode(update: Update, context: CallbackContext):
@@ -365,7 +360,6 @@ def blacklist_mode(update: Update, context: CallbackContext):
     return ""
 
 
-@run_async
 @user_not_admin
 def del_blackliststicker(update: Update, context: CallbackContext):
     bot = context.bot
@@ -428,7 +422,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                     return
                 elif getmode == 5:
                     message.delete()
-                    chat.kick_member(user.id)
+                    chat.ban_member(user.id)
                     bot.sendMessage(
                         chat.id,
                         "{} banned because using '{}' which in blacklist stickers".format(
@@ -440,7 +434,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                 elif getmode == 6:
                     message.delete()
                     bantime = extract_time(message, value)
-                    chat.kick_member(user.id, until_date=bantime)
+                    chat.ban_member(user.id, until_date=bantime)
                     bot.sendMessage(
                         chat.id,
                         "{} banned for {} because using '{}' which in blacklist stickers".format(
@@ -489,7 +483,7 @@ def __chat_settings__(chat_id, user_id):
 
 
 def __stats__():
-    return "• {} blacklist stickers, across {} chats.".format(
+    return "• {} ʙʟᴀᴄᴋʟɪsᴛ sᴛɪᴄᴋᴇʀs, ᴀᴄʀᴏss {} ᴄʜᴀᴛs.".format(
         sql.num_stickers_filters(), sql.num_stickers_filter_chats()
     )
 
@@ -497,32 +491,32 @@ def __stats__():
 __help__ = """
 ʙʟᴀᴄᴋʟɪsᴛ sᴛɪᴄᴋᴇʀ ɪs ᴜsᴇᴅ ᴛᴏ sᴛᴏᴘ ᴄᴇʀᴛᴀɪɴ sᴛɪᴄᴋᴇʀs. ᴡʜᴇɴᴇᴠᴇʀ ᴀ sᴛɪᴄᴋᴇʀ ɪs sᴇɴᴛ, ᴛʜᴇ ᴍᴇssᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪᴍᴍᴇᴅɪᴀᴛᴇʟʏ.
 *ɴᴏᴛᴇ:* ʙʟᴀᴄᴋʟɪsᴛ sᴛɪᴄᴋᴇʀs ᴅᴏ ɴᴏᴛ ᴀғғᴇᴄᴛ ᴛʜᴇ ɢʀᴏᴜᴘ ᴀᴅᴍɪɴ
- ❍ /ʙʟsᴛɪᴄᴋᴇʀ*:* sᴇᴇ ᴄᴜʀʀᴇɴᴛ ʙʟᴀᴄᴋʟɪsᴛᴇᴅ sᴛɪᴄᴋᴇʀ
+ ❍ /blsticker*:* sᴇᴇ ᴄᴜʀʀᴇɴᴛ ʙʟᴀᴄᴋʟɪsᴛᴇᴅ sᴛɪᴄᴋᴇʀ
 *ᴏɴʟʏ ᴀᴅᴍɪɴ:*
- ❍ /ᴀᴅᴅʙʟsᴛɪᴄᴋᴇʀ <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ>*:* ᴀᴅᴅ ᴛʜᴇ sᴛɪᴄᴋᴇʀ ᴛʀɪɢɢᴇʀ ᴛᴏ ᴛʜᴇ ʙʟᴀᴄᴋ ʟɪsᴛ. ᴄᴀɴ ʙᴇ ᴀᴅᴅᴇᴅ ᴠɪᴀ ʀᴇᴘʟʏ sᴛɪᴄᴋᴇʀ
- ❍ /ᴜɴʙʟsᴛɪᴄᴋᴇʀ <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ>*:* ʀᴇᴍᴏᴠᴇ ᴛʀɪɢɢᴇʀs ғʀᴏᴍ ʙʟᴀᴄᴋʟɪsᴛ. ᴛʜᴇ sᴀᴍᴇ ɴᴇᴡʟɪɴᴇ ʟᴏɢɪᴄ ᴀᴘᴘʟɪᴇs ʜᴇʀᴇ, sᴏ ʏᴏᴜ ᴄᴀɴ ᴅᴇʟᴇᴛᴇ ᴍᴜʟᴛɪᴘʟᴇ ᴛʀɪɢɢᴇʀs ᴀᴛ ᴏɴᴄᴇ
- ❍ /ʀᴍʙʟsᴛɪᴄᴋᴇʀ <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ>*:* sᴀᴍᴇ ᴀs ᴀʙᴏᴠᴇ
- ❍ /ʙʟsᴛɪᴄᴋᴇʀᴍᴏᴅᴇ <ʙᴀɴ/ᴛʙᴀɴ/ᴍᴜᴛᴇ/ᴛᴍᴜᴛᴇ>*:* sᴇᴛs ᴜᴘ ᴀ ᴅᴇғᴀᴜʟᴛ ᴀᴄᴛɪᴏɴ ᴏɴ ᴡʜᴀᴛ ᴛᴏ ᴅᴏ ɪғ ᴜsᴇʀs ᴜsᴇ ʙʟᴀᴄᴋʟɪsᴛᴇᴅ sᴛɪᴄᴋᴇʀs
+ ❍ /addblsticker <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ>*:* ᴀᴅᴅ ᴛʜᴇ sᴛɪᴄᴋᴇʀ ᴛʀɪɢɢᴇʀ ᴛᴏ ᴛʜᴇ ʙʟᴀᴄᴋ ʟɪsᴛ. ᴄᴀɴ ʙᴇ ᴀᴅᴅᴇᴅ ᴠɪᴀ ʀᴇᴘʟʏ sᴛɪᴄᴋᴇʀ
+ ❍ /unblsticker <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ>*:* ʀᴇᴍᴏᴠᴇ ᴛʀɪɢɢᴇʀs ғʀᴏᴍ ʙʟᴀᴄᴋʟɪsᴛ. ᴛʜᴇ sᴀᴍᴇ ɴᴇᴡʟɪɴᴇ ʟᴏɢɪᴄ ᴀᴘᴘʟɪᴇs ʜᴇʀᴇ, sᴏ ʏᴏᴜ ᴄᴀɴ ᴅᴇʟᴇᴛᴇ ᴍᴜʟᴛɪᴘʟᴇ ᴛʀɪɢɢᴇʀs ᴀᴛ ᴏɴᴄᴇ
+ ❍ /rmblsticker <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ>*:* sᴀᴍᴇ ᴀs ᴀʙᴏᴠᴇ
+ ❍ /blstickermode <ʙᴀɴ/ᴛʙᴀɴ/ᴍᴜᴛᴇ/ᴛᴍᴜᴛᴇ>*:* sᴇᴛs ᴜᴘ ᴀ ᴅᴇғᴀᴜʟᴛ ᴀᴄᴛɪᴏɴ ᴏɴ ᴡʜᴀᴛ ᴛᴏ ᴅᴏ ɪғ ᴜsᴇʀs ᴜsᴇ ʙʟᴀᴄᴋʟɪsᴛᴇᴅ sᴛɪᴄᴋᴇʀs
 ɴᴏᴛᴇ:
- ❍ <sᴛɪᴄᴋᴇʀ ʟɪɴᴋ> ᴄᴀɴ ʙᴇ `ʜᴛᴛᴘs://ᴛ.ᴍᴇ/ᴀᴅᴅsᴛɪᴄᴋᴇʀs/<sᴛɪᴄᴋᴇʀ>` ᴏʀ ᴊᴜsᴛ `<sᴛɪᴄᴋᴇʀ>` ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ ᴍᴇssᴀɢᴇ
-
-☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDRD_21)............☆
+ ❍ <sticker link > ᴄᴀɴ ʙᴇ `https://t.me/addstickers//<sticker>` ᴏʀ ᴊᴜsᴛ `<sticker>` ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ ᴍᴇssᴀɢᴇ
 """
 
-__mod_name__ = "♨️sᴛɪᴄᴋᴇʀ♨️"
+__mod_name__ = "Sᴛɪᴄᴋᴇʀ"
 
 BLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler(
-    "blsticker", blackliststicker, admin_ok=True
+    "blsticker", blackliststicker, admin_ok=True, run_async=True
 )
 ADDBLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler(
-    "addblsticker", add_blackliststicker
+    "addblsticker", add_blackliststicker, run_async=True
 )
 UNBLACKLIST_STICKER_HANDLER = CommandHandler(
-    ["unblsticker", "rmblsticker"], unblackliststicker
+    ["unblsticker", "rmblsticker"], unblackliststicker, run_async=True
 )
+
 BLACKLISTMODE_HANDLER = CommandHandler("blstickermode", blacklist_mode)
+
 BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
-    Filters.sticker & Filters.group, del_blackliststicker
+    Filters.sticker & Filters.chat_type.groups, del_blackliststicker, run_async=True
 )
 
 dispatcher.add_handler(BLACKLIST_STICKER_HANDLER)
