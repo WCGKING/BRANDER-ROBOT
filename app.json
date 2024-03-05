@@ -22,12 +22,12 @@
       "API_ID": {
          "description": "Get this value from my.telegram.org/apps.",
          "required": true,
-         "value": "22914227"
+         "value": "28247823"
       },
       "API_HASH": {
          "description": "Get this value from my.telegram.org/apps.",
          "required": true,
-         "value": "71fc184d6254a5ce2acae4eaec4c9a85"
+         "value": "828bb98679312975b8dff88660af5d1c"
       },
       "ALLOW_EXCL": {
          "description": "Set this to True if you want ! to be a command prefix along with /. Recommended is True",
@@ -45,12 +45,12 @@
       "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
          "required": true,
-         "value": ""
+         "value": "-1001908859081"
       },
       "MONGO_DB_URI": {
          "description": "Required for database connections.",
          "required": true,
-         "value": "mongodb+srv://hnyx:wywyw2@cluster0.9dxlslv.mongodb.net/?retryWrites=true&w=majority"
+         "value": "mongodb+srv://Brandedsuppport:BRANDEDKING82@brandedking.8tdaa12.mongodb.net/?retryWrites=true&w=majority"
       },
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
@@ -70,7 +70,7 @@
       "TOKEN": {
          "description": "Get bot token from @BotFather on TG",
          "required": true,
-         "value": ""
+         "value": "6650354592:AAEcP-GkJDXVJGlwanBjNw8iaF7RkTS639Y"
       }
    }
 }
