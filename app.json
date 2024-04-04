@@ -13,64 +13,74 @@
    "addons": [
       {
          "options": {
-            "version": "12"
+            "version": "15"
          },
          "plan": "heroku-postgresql"
       }
    ],
    "env": {
-      "API_ID": {
-         "description": "Get this value from my.telegram.org/apps.",
-         "required": true,
-         "value": "28247823"
-      },
-      "API_HASH": {
-         "description": "Get this value from my.telegram.org/apps.",
-         "required": true,
-         "value": "828bb98679312975b8dff88660af5d1c"
-      },
-      "ALLOW_EXCL": {
-         "description": "Set this to True if you want ! to be a command prefix along with /. Recommended is True",
-         "value": "True"
-      },
-      "DEL_CMDS": {
-         "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
-         "value": "True"
-      },
-      "ENV": {
-         "description": "Setting this to ANYTHING will enable environment variables. Leave it as it is",
-         "required": true,
-         "value": "True"
-      },
-      "EVENT_LOGS": {
-         "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
-         "required": true,
-         "value": "-1001908859081"
-      },
-      "MONGO_DB_URI": {
-         "description": "Required for database connections.",
-         "required": true,
-         "value": "mongodb+srv://Brandedsuppport:BRANDEDKING82@brandedking.8tdaa12.mongodb.net/?retryWrites=true&w=majority"
-      },
-      "OWNER_ID": {
-         "description": "Your user ID as an integer.",
-         "required": true,
-         "value": "6258877205"
-      },
-      "START_IMG": {
-         "description": "Telegraph link of the image which will be shown at start command.",
-         "required": true,
-         "value": "https://te.legra.ph/file/bc3d21b16485018deebd1.jpg"
-      },
-      "SUPPORT_CHAT": {
-         "description": "Your Telegram support group chat username where your users will go and bother you with shit.",
-         "required": true,
-         "value": "BRANDED_WORLD"
-      },
-      "TOKEN": {
-         "description": "Get bot token from @BotFather on TG",
-         "required": true,
-         "value": "6650354592:AAEcP-GkJDXVJGlwanBjNw8iaF7RkTS639Y"
-      }
-   }
+    "API_ID": {
+       "description": "Get this value from my.telegram.org/apps.",
+       "required": true,
+       "value": "28247823"
+    },
+    "API_HASH": {
+       "description": "Get this value from my.telegram.org/apps.",
+       "required": true,
+       "value": "828bb98679312975b8dff88660af5d1c"
+    },
+    "ALLOW_EXCL": {
+       "description": "Set this to True if you want ! to be a command prefix along with /. Recommended is True",
+       "value": "True"
+    },
+    "DEL_CMDS": {
+       "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
+       "value": "True"
+    },
+    "ENV": {
+       "description": "Setting this to ANYTHING will enable environment variables. Leave it as it is",
+       "required": true,
+       "value": "True"
+    },
+    "EVENT_LOGS": {
+       "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
+       "required": true,
+       "value": "-1001908859081"
+    },
+    "MONGO_DB_URI": {
+       "description": "Required for database connections.",
+       "required": true,
+       "value": "mongodb+srv://Brandedsuppport:BRANDEDKING82@brandedking.8tdaa12.mongodb.net/?retryWrites=true&w=majority"
+    },
+    "CASH_API_KEY": {
+        "description": " Get your API key from https://www.alphavantage.co/support/#api-key",
+        "required": false,
+        "value": ""
+    },
+    "TIME_API_KEY": {
+        "description": " Get your API key from https://timezonedb.com/api",
+        "required": false,
+        "value": ""
+    },         
+    "OWNER_ID": {
+       "description": "Your user ID as an integer.",
+       "required": true,
+       "value": "6258877205"
+    },
+    "START_IMG": {
+       "description": "Telegraph link of the image which will be shown at start command.",
+       "required": true,
+       "value": "https://te.legra.ph/file/bc3d21b16485018deebd1.jpg"
+    },
+    "SUPPORT_CHAT": {
+       "description": "Your Telegram support group chat username where your users will go and bother you with shit Example - The_support_chat.",
+       "required": true,
+       "value": "BRANDED_WORLD"
+    },
+    "TOKEN": {
+       "description": "Get bot token from @BotFather on TG",
+       "required": true,
+       "value": "6650354592:AAEcP-GkJDXVJGlwanBjNw8iaF7RkTS639Y"
+    }
+ }
 }
