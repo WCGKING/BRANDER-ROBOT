@@ -392,7 +392,7 @@ def connection_status(func):
         else:
             if update.effective_message.chat.type == "private":
                 update.effective_message.reply_text(
-                    "sᴇɴᴅ /connect ɪɴ ᴀ ɢʀᴏᴜᴘ ᴛʜᴀᴛ ʏᴏᴜ ᴀɴᴅ ɪ ʜᴀᴠᴇ ɪɴ ᴄᴏᴍᴍᴏɴ ғɪʀsᴛ."
+                    "Send /connect in a group that you and I have in common first."
                 )
                 return connected_status
 
