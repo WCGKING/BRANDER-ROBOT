@@ -2,7 +2,7 @@ import datetime
 import os
 
 from telegram import Update
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import CallbackContext, CommandHandler, run_async
 from telethon import events
 
 from MukeshRobot import dispatcher, telethn
@@ -11,6 +11,7 @@ from MukeshRobot.modules.helper_funcs.chat_status import dev_plus
 DEBUG_MODE = False
 
 
+@run_async
 @dev_plus
 def debug(update: Update, context: CallbackContext):
     global DEBUG_MODE
@@ -51,6 +52,7 @@ async def i_do_nothing_yes(event):
 support_chat = os.getenv("SUPPORT_CHAT")
 
 
+@run_async
 @dev_plus
 def logs(update: Update, context: CallbackContext):
     user = update.effective_user
@@ -58,15 +60,16 @@ def logs(update: Update, context: CallbackContext):
         context.bot.send_document(document=f, filename=f.name, chat_id=user.id)
 
 
-LOG_HANDLER = CommandHandler("logs", logs, run_async=True)
+LOG_HANDLER = CommandHandler("logs", logs)
 dispatcher.add_handler(LOG_HANDLER)
 
-DEBUG_HANDLER = CommandHandler("debug", debug, run_async=True)
+DEBUG_HANDLER = CommandHandler("debug", debug)
 dispatcher.add_handler(DEBUG_HANDLER)
 
-__mod_name__ = "Dᴇʙᴜɢ"
+__mod_name__ = "♨️ᴅᴇʙᴜɢ♨️"
 __help__ = """
 /logs    ᴛᴏ ɢᴇᴛ ʜᴇʀᴜᴋᴏ ʟᴏɢs
-/debug ᴛᴏ ᴏɴ / ᴏғғ ᴅᴇʙᴜɢ """
+/debug ᴛᴏ ᴏɴ / ᴏғғ ᴅᴇʙᴜɢ 
+
 __command_list__ = ["debug"]
 __handlers__ = [DEBUG_HANDLER]
