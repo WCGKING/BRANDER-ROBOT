@@ -1,27 +1,3 @@
-"""MIT License
-
-Copyright (c) 2023-24 Noob-Mukesh
-
-          GITHUB: NOOB-MUKESH
-          TELEGRAM: @MR_SUKKUN
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE."""
 import io
 import os
 
@@ -31,7 +7,7 @@ import traceback
 from contextlib import redirect_stdout
 
 from telegram import ParseMode, Update
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import CallbackContext, CommandHandler, run_async
 
 from MukeshRobot import LOGGER, dispatcher,OWNER_ID
 from MukeshRobot.modules.helper_funcs.chat_status import dev_plus
@@ -56,7 +32,7 @@ def namespace_of(chat, update, bot):
 def log_input(update):
     user = update.effective_user.id
     chat = update.effective_chat.id
-   # LOGGER.info(f"IN: {update.effective_message.text} (user={user}, chat={chat})")
+    LOGGER.info(f"IN: {update.effective_message.text} (user={user}, chat={chat})")
 
 
 def send(msg, bot, update):
@@ -65,7 +41,7 @@ def send(msg, bot, update):
             out_file.name = "output.txt"
             bot.send_document(chat_id=update.effective_chat.id, document=out_file)
     else:
-        #LOGGER.info(f"OUT: '{msg}'")
+        LOGGER.info(f"OUT: '{msg}'")
         bot.send_message(
             chat_id=update.effective_chat.id,
             text=f"`{msg}`",
@@ -74,12 +50,14 @@ def send(msg, bot, update):
 
 
 @dev_plus
+@run_async
 def evaluate(update: Update, context: CallbackContext):
     bot = context.bot
     send(do(eval, bot, update), bot, update)
 
 
 @dev_plus
+@run_async
 def execute(update: Update, context: CallbackContext):
     bot = context.bot
     send(do(exec, bot, update), bot, update)
@@ -138,6 +116,7 @@ def do(func, bot, update):
 
 
 @dev_plus
+@run_async
 def clear(update: Update, context: CallbackContext):
     bot = context.bot
     log_input(update)
@@ -147,18 +126,17 @@ def clear(update: Update, context: CallbackContext):
     send("Cleared locals.", bot, update)
 
 
-EVAL_HANDLER = CommandHandler(("e", "ev", "eva", "eval"), evaluate, run_async=True)
-EXEC_HANDLER = CommandHandler(("x", "ex", "exe", "exec", "py"), execute, run_async=True)
-CLEAR_HANDLER = CommandHandler("clearlocals", clear, run_async=True)
+EVAL_HANDLER = CommandHandler(("e", "ev", "eva", "eval"), evaluate)
+EXEC_HANDLER = CommandHandler(("x", "ex", "exe", "exec", "py"), execute)
+CLEAR_HANDLER = CommandHandler("clearlocals", clear)
 
 dispatcher.add_handler(EVAL_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
 dispatcher.add_handler(CLEAR_HANDLER)
 
-__mod_name__ = "Eᴠᴀʟ"
-__help__ = f"""
+__mod_name__ = "ᴇᴠᴀʟ"
+__help__ = """
 ★ᴏᴡɴᴇʀ ᴄᴍᴅ ★
 ★ /eval :- to evaluate simple code
 ★ /ex :-  to execute code
 ★ /clear :- to run clear cmd
-"""
