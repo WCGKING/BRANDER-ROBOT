@@ -908,7 +908,6 @@ def adminlist(update, context):
     except BadRequest:  # if original message is deleted
         return
 
-
 @run_async
 @bot_admin
 @can_promote
@@ -991,6 +990,9 @@ __help__ = """
 » /setgpic*:* ʀᴇᴘʟʏ ᴛᴏ ᴀɴ ɪᴍᴀɢᴇ ᴛᴏ sᴇᴛ ᴀs ɢʀᴏᴜᴘ ᴘʜᴏᴛᴏ
 » /setdesc*:* sᴇᴛ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ
 » /setsticker*:* sᴇᴛ ɢʀᴏᴜᴘ sᴛɪᴄᴋᴇʀ
+
+☆............𝙱𝚈 » [𝚅𝙸𝙿 𝙱𝙾𝚈](https://t.me/the_vip_boy)............☆
+"""
 
 SET_DESC_HANDLER = CommandHandler("setdesc", set_desc)
 SET_STICKER_HANDLER = CommandHandler("setsticker", set_sticker)
