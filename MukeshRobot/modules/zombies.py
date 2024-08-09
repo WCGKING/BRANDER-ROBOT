@@ -1,110 +1,86 @@
-from asyncio import sleep
 
-from telethon import events
-from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
-from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChannelParticipantsAdmins, ChatBannedRights
-
-from MukeshRobot import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, telethn
-
-# =================== CONSTANT ===================
-
-BANNED_RIGHTS = ChatBannedRights(
-    until_date=None,
-    view_messages=True,
-    send_messages=True,
-    send_media=True,
-    send_stickers=True,
-    send_gifs=True,
-    send_games=True,
-    send_inline=True,
-    embed_links=True,
-)
-
-
-UNBAN_RIGHTS = ChatBannedRights(
-    until_date=None,
-    send_messages=None,
-    send_media=None,
-    send_stickers=None,
-    send_gifs=None,
-    send_games=None,
-    send_inline=None,
-    embed_links=None,
-)
+from pyrogram import  filters
+from pyrogram.errors import ChatAdminRequired, UserAdminInvalid
+from pyrogram.types import ChatPermissions
+from pyrogram.enums import ChatMembersFilter
+import requests,asyncio
+from MukeshRobot import pbot as app,DEV_USERS,OWNER_ID,DEMONS,DRAGONS
 
 
 OFFICERS = [OWNER_ID] + DEV_USERS + DRAGONS + DEMONS 
 
 # Check if user has admin rights
-
-
 async def is_administrator(user_id: int, message):
     admin = False
-    async for user in telethn.iter_participants(
-        message.chat_id, filter=ChannelParticipantsAdmins
-    ):
-        if user_id == user.id or user_id in OFFICERS:
+    administrators = []
+    async for m in app.get_chat_members(message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m)
+    for user in administrators:
+        if user.user.id == user_id or user_id in OFFICERS:
             admin = True
             break
     return admin
 
-
-@telethn.on(events.NewMessage(pattern="^[!/]zombies ?(.*)"))
-async def rm_deletedacc(show):
-    con = show.pattern_match.group(1).lower()
+@app.on_message(filters.command("zombies", prefixes=["/","!"]) & filters.group)
+async def rm_deletedacc(client, message):
+    con = message.text.split(" ", 1)[1].lower() if len(message.command) > 1 else ""
     del_u = 0
-    del_status = "**Group clean, 0 deleted accounts found.**"
+    del_status = "Group cleaned, 0 deleted accounts found."
+    
     if con != "clean":
-        kontol = await show.reply("`Searching for deleted account to fu*k...`")
-        async for user in show.client.iter_participants(show.chat_id):
-            if user.deleted:
+        kontol = await message.reply("Searching for deleted accounts...")
+        
+        participants=[]
+        async for member in app.get_chat_members(message.chat.id):
+            participants.append(member)
+        
+      
+        for user in participants:
+            if user.user.is_deleted:
+                print(user.user.is_deleted)
                 del_u += 1
-                await sleep(1)
+                await asyncio.sleep(1)
         if del_u > 0:
             del_status = (
-                f"**Searching...** `{del_u}` **Deleted account/Zombie On this group,"
-                "\nClean it with command** `/zombies clean`"
+                f"Searching... {del_u} Deleted account(s) Zombie on this group, "
+                "Clean it with command `/zombies clean`"
             )
         return await kontol.edit(del_status)
-    chat = await show.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-    if not admin and not creator:
-        return await show.reply("**Sorry you're not admin!**")
-    memek = await show.reply("`Fu*king deleted accounts...`")
-    del_u = 0
-    del_a = 0
-    async for user in telethn.iter_participants(show.chat_id):
-        if user.deleted:
+    
+    chat = await client.get_chat(message.chat.id)
+    
+    admin=await is_administrator(message.from_user.id,message)
+    
+    if not admin:
+        return await message.reply("Sorry, you are not an admin!")
+    
+    memek = await message.reply("Removing deleted accounts...")
+    participants=[]
+    async for member in app.get_chat_members(message.chat.id):
+        participants.append(member)
+   
+    for user in participants:
+        if user.user.is_deleted:
+            print(user.user.is_deleted)
             try:
-                await show.client(
-                    EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS)
-                )
-            except ChatAdminRequiredError:
-                return await show.edit("`Not have a banned rights on this group`")
-            except UserAdminInvalidError:
+                
+                await client.ban_chat_member(message.chat.id, user.user.id)
+                await client.unban_chat_member(message.chat.id, user.user.id)
+                
+            except ChatAdminRequired:
+                return await message.edit("Do not have permission to ban in this group")
+            except UserAdminInvalid:
                 del_u -= 1
-                del_a += 1
-            await telethn(EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
-            del_u += 1
+            await asyncio.sleep(1)
+    
     if del_u > 0:
-        del_status = f"**Cleaned** `{del_u}` **Zombies**"
-    if del_a > 0:
-        del_status = (
-            f"**Cleaned** `{del_u}` **Zombies** "
-            f"\n`{del_a}` **Admin zombies not deleted.**"
-        )
+        del_status = f"Cleaned {del_u} Zombies"
+    
     await memek.edit(del_status)
 
-
-__help__ = """
+help_text = """
 *ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs*
- ❍ /zombies *:* sᴛᴀʀᴛs sᴇᴀʀᴄʜɪɴɢ ғᴏʀ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.
- ❍ /zombies ᴄʟᴇᴀɴ  *:* ʀᴇᴍᴏᴠᴇs ᴛʜᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ғʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ.
-
-☆............𝙱𝚈 » [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDEDKING82)............☆
+❍ /zombies : starts searching for deleted accounts in the group.
+❍ /zombies clean : removes the deleted accounts from the group.
 """
-
-
 __mod_name__ = "Zᴏᴍʙɪᴇ"
