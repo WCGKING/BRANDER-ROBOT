@@ -33,6 +33,7 @@ nekos.py
 opencv-python
 pretty-errors
 pydictionary==2.0.1
+psycopg2-binary==2.9.6
 pyfiglet
 pykeyboard==0.1.5
 pymongo
