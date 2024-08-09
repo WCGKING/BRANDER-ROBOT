@@ -211,7 +211,6 @@ sᴏᴍᴇᴛɪᴍᴇs, ʏᴏᴜ ᴍɪɢʜᴛ ᴛʀᴜsᴛ ᴀ ᴜsᴇʀ ɴᴏ�
 ❍ /unapproveall *:* ᴜɴᴀᴘᴘʀᴏᴠᴇ *ᴀʟʟ* ᴜsᴇʀs ɪɴ ᴀ ᴄʜᴀᴛ. ᴛʜɪs ᴄᴀɴɴᴏᴛ ʙᴇ ᴜɴᴅᴏɴᴇ.
 
 
-
 APPROVE = DisableAbleCommandHandler("approve", approve)
 DISAPPROVE = DisableAbleCommandHandler("unapprove", disapprove)
 APPROVED = DisableAbleCommandHandler("approved", approved)
