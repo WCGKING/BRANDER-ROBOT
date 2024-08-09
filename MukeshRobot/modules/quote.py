@@ -1,34 +1,18 @@
-
-import os
-import re
-import time
-import base64
-import random
 import base64
 import json
-import math
-import ssl
-
-from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
+import os
+from asyncio import sleep
 from json.decoder import JSONDecodeError
-from traceback import format_exc
-from datetime import datetime as dt
 from random import choice
-from shutil import rmtree
-from sqlalchemy import Boolean, Column
+
+from PIL import Image
+from telethon.errors import MessageDeleteForbiddenError, MessageNotModifiedError
+from telethon.tl import types
+from telethon.tl.custom import Message
+from telethon.tl.types import MessageService
+from telethon.utils import get_display_name, get_peer_id
 
 from MukeshRobot.events import register
-
-from asyncio import sleep
-
-from telethon.errors import MessageDeleteForbiddenError, MessageNotModifiedError
-from telethon.tl.custom import Message
-from telethon.tl.types import MessageService, DocumentAttributeAudio, DocumentAttributeVideo
-from telethon.tl import types
-from telethon.utils import get_display_name, get_peer_id
-from requests.exceptions import MissingSchema
-from telethon import Button
 
 ##api
 
@@ -200,6 +184,7 @@ class Quotly:
             return file_name
         raise Exception(str(request))
 
+
 quotly = Quotly()
 
 try:
@@ -282,7 +267,8 @@ def check_filename(filroid):
                 return ult
     return filroid
 
-#edit or reply
+
+# edit or reply for telethon
 async def eor(event, text=None, **args):
     time = args.get("time", None)
     edit_time = args.get("edit_time", None)
@@ -328,7 +314,7 @@ async def eod(event, text=None, **kwargs):
 async def _try_delete(event):
     try:
         return await event.delete()
-    except (MessageDeleteForbiddenError):
+    except MessageDeleteForbiddenError:
         pass
     except BaseException as er:
         from . import LOGS
@@ -340,12 +326,13 @@ async def _try_delete(event):
 setattr(Message, "eor", eor)
 setattr(Message, "try_delete", _try_delete)
 
+
 @register(pattern="^/q(?: |$)(.*)")
 async def quott_(event):
     match = event.pattern_match.group(1).strip()
     if not event.is_reply:
-        return await event.eor("ᴘʟᴇᴀꜱᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇꜱꜱᴀɢᴇ ʙᴀʙʏ🥀")
-    msg = await event.reply("ᴄʀᴇᴀᴛɪɴɢ Qᴜᴏᴛᴇ ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ ʙᴀʙʏ🥀")
+        return await event.eor("ᴘʟᴇᴀsᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ")
+    msg = await event.reply("⚡️")
     reply = await event.get_reply_message()
     replied_to, reply_ = None, None
     if match:
@@ -401,3 +388,11 @@ async def quott_(event):
     os.remove(file)
     await msg.delete()
     return message
+
+
+__mod_name__ = "Qᴜᴏᴛʟʏ"
+
+__help__="""
+•➥ /q → ᴄʀᴇᴀᴛᴇ ᴀ ǫᴜᴏᴛᴇ ғʀᴏᴍ ᴛʜᴇ ᴍᴇssᴀɢᴇ 
+•➥ /q r → ᴄʀᴇᴀᴛᴇ ᴀ ǫᴜᴏᴛᴇ ғʀᴏᴍ ᴛʜᴇ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ ʀᴇᴘʟʏ
+ """
