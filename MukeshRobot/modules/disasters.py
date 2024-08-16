@@ -630,7 +630,8 @@ __help__ = f"""
 `⚠️ ʀᴇᴀᴅ ғʀᴏᴍ ᴛᴏᴘ`
 ᴠɪsɪᴛ [sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ](f"https://t.me{SUPPORT_CHAT}") ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.
 
-
+☆............𝙱𝚈 » [BRANDED](f"https://t.me/BRANDEDKING8")............☆
+"""
 
 SUDO_HANDLER = CommandHandler("addsudo", addsudo)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport)
