@@ -35,14 +35,14 @@ ENV = bool(os.environ.get("ENV", False))
 
 if ENV:
 
-    API_ID = int(os.environ.get("API_ID", None))
-    API_HASH = os.environ.get("API_HASH", None)
+    API_ID = int(os.environ.get("API_ID", 28247823))
+    API_HASH = os.environ.get("API_HASH", "828bb98679312975b8dff88660af5d1c")
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
-    EVENT_LOGS = os.environ.get("EVENT_LOGS", )
+    EVENT_LOGS = os.environ.get("EVENT_LOGS", -1001908859081)
     INFOPIC = bool(os.environ.get("INFOPIC", "True"))
     LOAD = os.environ.get("LOAD", "").split()
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
