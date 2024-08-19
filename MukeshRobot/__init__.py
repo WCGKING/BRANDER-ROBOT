@@ -42,7 +42,7 @@ if ENV:
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
-    EVENT_LOGS = os.environ.get("EVENT_LOGS", None)
+    EVENT_LOGS = os.environ.get("EVENT_LOGS", )
     INFOPIC = bool(os.environ.get("INFOPIC", "True"))
     LOAD = os.environ.get("LOAD", "").split()
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
@@ -58,7 +58,7 @@ if ENV:
     WORKERS = int(os.environ.get("WORKERS", 8))
 
     try:
-        OWNER_ID = int(os.environ.get("OWNER_ID", None))
+        OWNER_ID = int(os.environ.get("OWNER_ID", 7250012103))
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
