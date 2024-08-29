@@ -37,6 +37,7 @@ pyfiglet
 pykeyboard==0.1.5
 pymongo
 pynewtonmath==1.0.1
+psycopg2-binary==2.9.6
 pyrate-limiter==2.10.0
 pyshorteners
 pyrogram==2.0.106
