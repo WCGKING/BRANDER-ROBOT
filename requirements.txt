@@ -56,3 +56,4 @@ wget
 yt_dlp
 youtube_search
 youtube_search_python
+opencv-python-headless
