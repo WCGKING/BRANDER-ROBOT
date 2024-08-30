@@ -88,21 +88,19 @@ PM_START_TEXT = """
 ║ 
 ║┣⪼ 𝗦𝗨𝗣𝗣𝗢𝗥𝗧 𝗖𝗛𝗔𝗧 : [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𝗖𝗛𝗔𝗧](https://t.me/BRANDED_WORLD)
 ║ 
-║┣⪼ 𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𝗞𝗜𝗡𝗚 : [𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𝗞𝗜𝗡𝗚](https://t.me/World_Chatting_Group82)
 ╚═════════════════❍⊱❁۪۪
    
         
-        ╔════════ஜ۩۞۩ஜ════════╗
+╔════════ஜ۩۞۩ஜ════════╗
 
-        𝗠𝗔𝗗𝗘 𝗕𝗬 𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚
+[𝗠𝗔𝗗𝗘 𝗕𝗬 𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚](https://t.me/BRANDEDKING8)
     
-        ╚════════ஜ۩۞۩ஜ════════╝
+╚════════ஜ۩۞۩ஜ════════╝
 
 ɪ ᴀᴍ ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɴᴅ sᴜᴘᴇʀғᴀsᴛ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ᴀɴᴅ ᴠᴄ ᴘʟᴀʏᴇʀ ᴡɪᴛʜ 24x7 ᴀᴄᴛɪᴠᴇ » ғᴏʀ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs ᴀɴᴅ ᴄʜᴀɴɴᴇʟ
 
 ғᴇᴇʟ ʟᴀɢ ғʀᴇᴇ ᴛᴏ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴇɴᴊᴏʏ sᴜᴘᴇʀ ʜɪɢʜ ǫᴜᴀʟɪᴛʏ ᴍᴀɴᴀɢɪɴɢ-ɢʀᴏᴜᴘ &  ᴘʟᴀʏ ᴀᴜᴅɪᴏ ᴀɴᴅ ᴠɪᴅᴇᴏ
 
-   ☆......𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𓆩🇽𓆪 𝗞𝗜𝗡𝗚......☆ 
 """
 
 buttons = [
@@ -1035,7 +1033,7 @@ def donate(update: Update, context: CallbackContext):
 
         if OWNER_ID != 5935608297:
             update.effective_message.reply_text(
-                f"» ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴩᴇʀ ᴏғ {dispatcher.bot.first_name} sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ɪs [ɢɪᴛʜᴜʙ](https://github.com/noob-mukesh/MukeshRobot)"
+                f"» ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴩᴇʀ ᴏғ {dispatcher.bot.first_name} sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ɪs [ɢɪᴛʜᴜʙ](https://github.com/WCGKING/BRANDER-ROBOT)"
                 f"\n\nʙᴜᴛ ʏᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴛʜᴇ ᴩᴇʀsᴏɴ ᴄᴜʀʀᴇɴᴛʟʏ ʀᴜɴɴɪɴɢ ᴍᴇ : [ʜᴇʀᴇ]({DONATE_STRING})",
                 parse_mode=ParseMode.MARKDOWN,
                 
