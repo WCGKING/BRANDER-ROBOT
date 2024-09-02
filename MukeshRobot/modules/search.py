@@ -197,7 +197,7 @@ async def stack_search_(app: app, msg: Message):
         return
 
 
-__mod_name__ = "📍Gᴏᴏɢʟᴇ📍"
+__mod_name__ = "search"
 
 __help__ = """
  ❍ /google <text>*:* Perform a google search
