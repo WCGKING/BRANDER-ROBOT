@@ -13,8 +13,7 @@ from PIL import Image
 from search_engine_parser import GoogleSearch
 
 from MukeshRobot import telethn as tbot
-from MukeshRobot.events import registe
-
+from MukeshRobot.events import register
 
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 11; SM-M017F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
