@@ -1,12 +1,19 @@
-from traceback import format_exc
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from search_engine_parser.core.engines.google import Search as GoogleSearch
-from search_engine_parser.core.engines.stackoverflow import \
-    Search as StackSearch
-from search_engine_parser.core.exceptions import NoResultsFound, NoResultsOrTrafficError
-from MukeshRobot import app
-from pyrogram import filters
+import glob
+import io
+import os
+import re
+import urllib
+import urllib.request
 
+import bs4
+import requests
+from bing_image_downloader import downloader
+from bs4 import BeautifulSoup
+from PIL import Image
+from search_engine_parser import GoogleSearch
+
+from MukeshRobot import telethn as tbot
+from MukeshRobot.events import registe
 
 
 
